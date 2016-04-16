@@ -107,7 +107,7 @@ public class HardwareAdapter {
 		//kAButton.whenPressed(new PIDDriveThenTurn());
 		//kXButton.whenPressed(new PIDDriveForwardEncoder(6, 1000));
 		//kYButton.whenPressed(new PIDDriveTurn(6, 2000, 30));
-		kRightBumper.whileHeld(new IngestGroup());
+		kYButton.whileHeld(new IngestGroup());
 		kAButton.whenPressed(new OpenCheval(0));
 		//kBButton.whenPressed(new IngestBallPID(-1550));
 		//kXButton.whileHeld(new IngestBallPID(-1600));

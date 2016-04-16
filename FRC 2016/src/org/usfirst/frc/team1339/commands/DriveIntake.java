@@ -25,7 +25,7 @@ public class DriveIntake extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-    	if (HardwareAdapter.getYButton()){
+    	if (HardwareAdapter.getRightBumper()){
     		speed = -0.8;
     	}
     	else if(HardwareAdapter.getLeftBumper()){
