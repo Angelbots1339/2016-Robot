@@ -27,6 +27,7 @@ public class PIDDriveShooter extends CommandBase {
     protected void initialize() {
     	HardwareAdapter.ShooterPID.setSetpoint(RPSsetpoint);
     	HardwareAdapter.AccelPID.setSetpoint(0);
+    	HardwareAdapter.JerkPID.setSetpoint(0);
     }
 
     // Called repeatedly when this Command is scheduled to run

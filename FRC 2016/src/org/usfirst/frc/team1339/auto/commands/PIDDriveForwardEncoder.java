@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class PIDDriveForwardEncoder extends CommandBase {
 
 	double m_clicks;
+	private int counter;
+	private boolean done;
 	
     public PIDDriveForwardEncoder(double timeout, double clicks) {
         // Use requires() here to declare subsystem dependencies
@@ -28,18 +30,27 @@ public class PIDDriveForwardEncoder extends CommandBase {
     	HardwareAdapter.RightDriveEncoderPID.setSetpoint(m_clicks+HardwareAdapter.getRightDriveEnc());
     	HardwareAdapter.LeftDriveEncoderPID.setSetpoint(m_clicks+HardwareAdapter.getLeftDriveEnc());
     	HardwareAdapter.GyroPID.setSetpoint(HardwareAdapter.kSpartanGyro.getAngle());
+    	counter = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	SmartDashboard.putString("AutoCommand", "Enc");
     	PIDChassis.PIDDriveEncoder();
+    	if (HardwareAdapter.RightDriveEncoderPID.onTarget(50) || HardwareAdapter.LeftDriveEncoderPID.onTarget(50)){
+    		counter++;
+    	}
+    	if (counter >= 5){
+    		done = true;
+    	}
+    	else{
+    		done = false;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return HardwareAdapter.RightDriveEncoderPID.onTarget(10)
-        		|| HardwareAdapter.LeftDriveEncoderPID.onTarget(10)  || isTimedOut();
+        return done || isTimedOut();
     }
 
     // Called once after isFinished returns true

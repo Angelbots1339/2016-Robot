@@ -27,14 +27,14 @@ public class AutomatedShootBall extends CommandBase {
     protected void execute() {
     	//if (!PIDChassis.visionRunning){
     	SmartDashboard.putString("IntakeCommand", "Intake");
-    	if (HardwareAdapter.ShooterPID.onTarget(.5)){
+    	if (HardwareAdapter.ShooterPID.onTarget(1.5)){
    			count++;
    		}
    		else {
    			count = 0;
    		}
     	if (isTimedOut() || count >= 10){
-   			PIDIntake.intake(-0.8);
+   			PIDIntake.intake(-1);
     	}
    	}
 

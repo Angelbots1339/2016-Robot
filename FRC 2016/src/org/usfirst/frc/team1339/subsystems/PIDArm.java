@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class PIDArm extends Subsystem {
 	
 	public boolean armInit;
+	public boolean chillDone = false;
+	
+	public boolean down = true;
     // Initialize your subsystem here
     public PIDArm() {
     	armInit = true;
@@ -27,6 +30,21 @@ public class PIDArm extends Subsystem {
     	setDefaultCommand(new PIDDriveArm(-1600));
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    public void chillFinished(){
+    	chillDone = true;
+    }
+    public void chillInit(){
+    	chillDone = false;
+    }
+    public boolean getChill(){
+    	return chillDone;
+    }
+    public void downFinished(){
+    	down = true;
+    }
+    public void downInit(){
+    	down = false;
     }
     
     public void control(double speed) {

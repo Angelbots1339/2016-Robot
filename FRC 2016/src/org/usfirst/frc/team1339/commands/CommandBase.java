@@ -15,7 +15,7 @@ import org.usfirst.frc.team1339.subsystems.*;
 public abstract class CommandBase extends Command {
 
 	public static HardwareAdapter HardwareAdapter;
-	public static EncoderConversion EncConv;
+	//public static EncoderConversion EncConv;
     // Create a single static instance of all of your subsystems
     // "static"  members belong to the class instead of a specific instance, 
     // meaning that you could not need to use the " = new" syntax to use the member
@@ -35,7 +35,7 @@ public abstract class CommandBase extends Command {
         // news. Don't move it
         
         HardwareAdapter = new HardwareAdapter();
-        EncConv = new EncoderConversion();
+        //EncConv = new EncoderConversion();
         // Show what command your subsystem is running on the SmartDashboard
         // This is optional
         

@@ -43,7 +43,7 @@ public class OneBallAuto extends CommandGroup {
     	addSequential(new PIDDriveForwardEncoder(3, 2150));
 
     	addParallel(new PIDDriveShooter(85, true));
-    	//addSequential(new CorrectVision(3, false));
+    	addSequential(new CorrectVision(3, false));
     	addSequential(new AutomatedShootBall());
     }
 }

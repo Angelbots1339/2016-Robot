@@ -12,12 +12,8 @@ public class DriveWithArcadeJoystick extends CommandBase {
 	private Joystick arcadeJoystick;
 	private double throttle;
 	private double turn;
-	private boolean down;
-	private boolean GTA = false;
-	private double GTASpeed = 0;
+	private boolean inverted = false;
 	private int cooldown = 10;
-	private double GTATurn;
-	
 
     public DriveWithArcadeJoystick() {
         // Use requires() here to declare subsystem dependencies
@@ -33,45 +29,23 @@ public class DriveWithArcadeJoystick extends CommandBase {
     protected void execute() {
     	arcadeJoystick = HardwareAdapter.getRazerStick();
     	cooldown++;
-    	
-    	
-    	if(arcadeJoystick.getPOV() <= 225 && arcadeJoystick.getPOV() >= 135 && HardwareAdapter.getLeftStickButton() && cooldown >= 10){
-    		down = true;
+ 
+    	if(HardwareAdapter.getLeftStickButton() && cooldown >= 20){
+    		inverted = !inverted;
     		cooldown = 0;
-    		System.out.println("Lets rek some shit");
-    	}
-    	else {
-    		down = false;
-    	}
-    	
-    	if(down){
-    		GTA = !GTA;
     	}
     	
     	throttle = arcadeJoystick.getRawAxis(Constants.kRazerLeftYAxis);
     	turn = arcadeJoystick.getRawAxis(Constants.kRazerRightXAxis);
-    	GTATurn = arcadeJoystick.getRawAxis(Constants.kRazerRightXAxis);
     	
-    	if(arcadeJoystick.getRawAxis(Constants.kRazerRightTrigger) >= .5){
-    		GTASpeed = (arcadeJoystick.getRawAxis(Constants.kRazerLeftYAxis) + 1) / 2;
-    	}
-    	else if(arcadeJoystick.getRawAxis(Constants.kRazerLeftTrigger) >= .5){
-    		GTASpeed = (arcadeJoystick.getRawAxis(Constants.kRazerLeftYAxis) - 1) / -2;
-    	}
-    	else{
-    		GTASpeed = 0;
+    	if(inverted){
+    		throttle *= -1;
     	}
     	
-    	if(GTA){
-    		PIDChassis.driveWithJoystick(GTASpeed, GTATurn);
-    	}
-    	if (GTA == false){
-    		throttle = throttle*throttle*throttle;
-        	turn = turn*turn*turn;
+    	throttle = throttle*throttle*throttle;
+    	turn = turn*turn*turn;
         	
-        	
-        	PIDChassis.driveWithJoystick(throttle, turn);
-    	}
+    	PIDChassis.driveWithJoystick(throttle, turn);
     }
 
     // Make this return true when this Command no longer needs to run execute()

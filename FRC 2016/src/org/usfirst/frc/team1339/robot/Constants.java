@@ -5,6 +5,11 @@ public class Constants {
 	public static final double kDriveKp = 0.07;
 	public static final double kDriveKi = 0;
 	public static final double kDriveKd = 0.05;
+	//Short Drive PID values
+
+	public static final double kShortDriveKp = 0.008;
+	public static final double kShortDriveKi = 0;
+	public static final double kShortDriveKd = 0.04;
 	// 0.05 , 0 , 0.05
 	
 	/*public static final double kDriveKp = 0.22; 
@@ -41,6 +46,10 @@ public class Constants {
 	public static final double kAccelKp = 0.00000035; //0.00000035
 	public static final double kAccelKi = 0;
 	public static final double kAccelKd = 0.;
+	//snap
+	public static final double kJerkKp = 0.0000005;
+	public static final double kJerkKi = 0;
+	public static final double kJerkKd = 0;
 	//Drive Setpoints
 	public static int kDriverSetpoint = 1000;
 	//Turn Setpoints

@@ -18,6 +18,7 @@ public class PIDShooter extends Subsystem {
 	public double ultraSpeed = .9;
 	double rate = 0, speed;
 	double lastSpeed = 0, lastTime = Timer.getFPGATimestamp();
+	double lastJerk = 0, snapLastTime = Timer.getFPGATimestamp();
 	
 
     // Initialize your subsystem here
@@ -87,9 +88,22 @@ public class PIDShooter extends Subsystem {
     	SmartDashboard.putNumber("ShooterAccel", accel);
     	return accel;
     }
+    public double getJerk(){
+    	double changeInJerk = getAcceleration() - lastJerk;
+    	lastJerk = getAcceleration();
+    	double time = Timer.getFPGATimestamp() - snapLastTime;
+    	snapLastTime = Timer.getFPGATimestamp();
+    	double snap = changeInJerk/time;
+    	return snap;
+    }
     public double PIDJerk(){
     	double jerk = HardwareAdapter.AccelPID.calculate(getAcceleration());
     	SmartDashboard.putNumber("shooter jerk PID", jerk);
     	return jerk;
+    }
+    public double PIDSnap(){
+    	double snap = HardwareAdapter.JerkPID.calculate(getJerk());
+    	SmartDashboard.putNumber("Snap PID", snap);
+    	return snap;
     }
 }

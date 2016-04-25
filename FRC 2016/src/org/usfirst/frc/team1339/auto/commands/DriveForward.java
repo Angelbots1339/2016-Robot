@@ -15,7 +15,7 @@ public class DriveForward extends CommandBase {
     	requires(PIDChassis);
     	
     	m_speed = speed;
-    	setTimeout(timeout);
+    	setTimeout(1);
     }
 
     // Called just before this Command runs the first time

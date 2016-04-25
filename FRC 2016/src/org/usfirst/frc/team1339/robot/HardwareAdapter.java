@@ -9,6 +9,7 @@ import org.usfirst.frc.team1339.auto.commandgroup.*;
 import org.usfirst.frc.team1339.auto.commands.OpenCheval;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveForwardEncoder;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveShooter;
+import org.usfirst.frc.team1339.auto.commands.PIDShortDrive;
 import org.usfirst.frc.team1339.auto.commands.IngestBallPID;
 import org.usfirst.frc.team1339.commands.*;
 import org.usfirst.frc.team1339.lib.utils.SynchronousPID;
@@ -75,8 +76,12 @@ public class HardwareAdapter {
 	//PID Loops
 	public static SynchronousPID LeftDriveEncoderPID = new SynchronousPID(
 			Constants.kDriveKp , Constants.kDriveKi , Constants.kDriveKd);
+	public static SynchronousPID ShortLeftDriveEncoderPID = new SynchronousPID(
+			Constants.kShortDriveKp , Constants.kShortDriveKi , Constants.kShortDriveKd);
 	public static SynchronousPID RightDriveEncoderPID = new SynchronousPID(
 			Constants.kDriveKp , Constants.kDriveKi , Constants.kDriveKd);
+	public static SynchronousPID ShortRightDriveEncoderPID = new SynchronousPID(
+			Constants.kShortDriveKp , Constants.kShortDriveKi , Constants.kShortDriveKd);
 	public static SynchronousPID TurnGyroPID = new SynchronousPID(
 			Constants.kTurnKp , Constants.kTurnKi , Constants.kTurnKd);
 	public static SynchronousPID ArmPID = new SynchronousPID(
@@ -85,8 +90,8 @@ public class HardwareAdapter {
 			Constants.kShooterKp , Constants.kShooterKi , Constants.kShooterKd);
 	public static SynchronousPID AccelPID = new SynchronousPID(
 			Constants.kAccelKp, Constants.kAccelKi, Constants.kAccelKd);
-	/*public static SynchronousPID VisionPID = new SynchronousPID(
-			Constants.kVisionKp , Constants.kVisionKi , Constants.kVisionKd);*/
+	public static SynchronousPID JerkPID = new SynchronousPID(
+			Constants.kJerkKp, Constants.kJerkKi, Constants.kJerkKd);
 	public static SynchronousPID GyroPID = new SynchronousPID(
 			Constants.kGyroKp , Constants.kGyroKi , Constants.kGyroKd);
 	
@@ -97,40 +102,17 @@ public class HardwareAdapter {
         HardwareAdapter.kIntakeUltrasonic.setAutomaticMode(true);
         
         kGyro.calibrate();
-		//kAButton.whenPressed(new RunVision());
-		//kBButton.whileHeld(new DriveShooterButton());
-        //kYButton.whenPressed(new ResetSensors());
-		//kYButton.whenPressed(new IngestGroup());
-		//kAButton.whenPressed(new Shoot());
-		//kXButton.whenPressed(new PIDGyro(.5 , 8));
-		//kAButton.whenPressed(new RunVision());
-		//kAButton.whenPressed(new PIDDriveThenTurn());
-		//kXButton.whenPressed(new PIDDriveForwardEncoder(6, 1000));
-		//kYButton.whenPressed(new PIDDriveTurn(6, 2000, 30));
-		kYButton.whileHeld(new IngestGroup());
-		kAButton.whenPressed(new OpenCheval(0));
-		//kBButton.whenPressed(new IngestBallPID(-1550));
-		//kXButton.whileHeld(new IngestBallPID(-1600));
-		kBButton.whenPressed(new ControlFlashlight(true));
-		kBButton.whenReleased(new ControlFlashlight(false));
-		
+		//kYButton.whileHeld(new IngestGroup());
+		kAButton.whenPressed(new AutomatedCheval());
+		//kBButton.whenPressed(new ControlFlashlight(true));
+		//kBButton.whenReleased(new ControlFlashlight(false));
+		kYButton.whenPressed(new PIDDriveForwardEncoder(3, -6735));
+		//kBButton.whenPressed(new PIDShortDrive(3, getDriveClicks()));
 		
 		kOneButton.whileHeld(new AutomatedShootBall());
-		//kBButton.whenPressed(new PIDDriveForwardEncoder(10 , 2000));
 		kTwoButton.whenPressed(new CorrectVision(3, false));
-		//kTwoButton.whileHeld(new ShootBallPID(90, true));
-		//kThreeButton.whileHeld(new ShootBallPID(80, true));
-		//kFiveButton.whileHeld(new ShootBallPID(85, true));
-		//kSixButton.whileHeld(new ShootBallPID(95, true));
-		//kFiveButton.whileHeld(new VisionAndShoot(85));
-		kSevenButton.whileHeld(new PIDDriveShooter(80, false));//was 85 change before comp.
-		//kSevenButton.whileHeld(new OperatorDrive());
+		kSevenButton.whileHeld(new PIDDriveShooter(80, false));
 		kThreeButton.whileHeld(new FlywheelBackwards());
-		//kFourButton.whileHeld(new DriveShooterTimeout(0.8, 1000));
-		//kFiveButton.whileHeld(new DriveShooterTimeout(0.55, 1000));
-		//kFourButton.whileHeld(new CorrectVision(1000));
-		
-		//kSixButton.whileHeld(new ShootBallPID(85, true));
 		
 		kShooterMotorOne.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		kLeverMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -193,13 +175,26 @@ public class HardwareAdapter {
 	}
 	
 	public static double getLeftDriveEnc(){
-		return (kLeftDriveEncoder.get() * -1);
+		return (kLeftDriveEncoder.get());
 	}
 	public static double getRightDriveEnc(){
-		return kRightDriveEncoder.get();
+		return (kRightDriveEncoder.get() * -1);
 	}
 	public static double getUltraAverage(){
 		return ((kUltrasonicOne.getRangeInches() + kUltrasonicTwo.getRangeInches())/2);
+	}
+	public static double getDriveClicksUltra1(){
+		double ultra = kUltrasonicOne.getRangeInches() * -1;
+		ultra -= 5;
+		double clicks = ultra * 32.25;
+		return clicks;
+	}
+
+	public static double getDriveClicksUltra2(){
+		double ultra = kUltrasonicTwo.getRangeInches() * -1;
+		ultra -= 5;
+		double clicks = ultra * 32.25;
+		return clicks;
 	}
 	
 	
@@ -211,16 +206,5 @@ public class HardwareAdapter {
 	public void resetGyro(){
 		kGyro.reset();
 		kSpartanGyro.reset();
-	}/*
-	//rumble
-	public void setRumble(Joystick.RumbleType type, double value){
-		kRazerStick.setRumble(type, (float)value);
 	}
-	public void setRumbleBoth(double value){
-        setRumble(Joystick.RumbleType.kLeftRumble, 0);
-        setRumble(Joystick.RumbleType.kRightRumble, 0);
-
-		//setRumble(Joystick.RumbleType.kLeftRumble, value);
-		//setRumble(Joystick.RumbleType.kRightRumble, value);
-	}*/
 }

@@ -8,6 +8,8 @@ import org.usfirst.frc.team1339.auto.commandgroup.RockWallAutonomous;
 import org.usfirst.frc.team1339.auto.commandgroup.SpyBoxAutonomous;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveForwardEncoder;
 import org.usfirst.frc.team1339.commands.*;
+import org.usfirst.frc.team1339.lib.utils.EncoderConversion;
+import org.usfirst.frc.team1339.subsystems.PIDArm;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
@@ -150,6 +152,11 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Current", HardwareAdapter.kLeverMotor.getOutputCurrent());
         //SmartDashboard.putNumber("Shooter Accel", CommandBase.PIDShooter.getAcceleration());
         SmartDashboard.putNumber("jerk", CommandBase.PIDShooter.PIDJerk());
+        SmartDashboard.putNumber("Snap", CommandBase.PIDShooter.PIDSnap());
+        SmartDashboard.putNumber("Open Cheval Clicks", HardwareAdapter.getDriveClicksUltra1());
+        SmartDashboard.putNumber("Short Drive Setpoint", HardwareAdapter.RightDriveEncoderPID.getSetpoint());
+        SmartDashboard.putNumber("arm PID Setpoint", HardwareAdapter.ArmPID.getSetpoint());
+        SmartDashboard.putBoolean("Down", CommandBase.PIDArm.down);
     }
     
     /**

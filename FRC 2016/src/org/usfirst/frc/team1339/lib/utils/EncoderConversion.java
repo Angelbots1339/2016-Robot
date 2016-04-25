@@ -23,11 +23,12 @@ public class EncoderConversion {
 		double feet = getDistanceInches(clicks)/12;
 		return feet;
 	}
-	public int getClicksInches(double distance){
+	public static int getClicksInches(double distance){
 		double rotation = distance /(6*Math.PI);
-		rotation /= (16/33);
+		rotation /= (16/38);
 		double clicks = rotation * 256;
-		return (int) Math.round(clicks);
+		//return (int) Math.round(clicks);
+		return (int)clicks;
 	}
 	public void publishSmartDashboard(){
 		SmartDashboard.putNumber("Left Drive Clicks", HardwareAdapter.kLeftDriveEncoder.get());

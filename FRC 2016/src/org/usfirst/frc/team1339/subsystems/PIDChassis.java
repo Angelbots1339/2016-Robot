@@ -138,8 +138,21 @@ public class PIDChassis extends Subsystem {
     	HardwareAdapter.kRightMotorTwo.set(rightSpeed);
     	//Driving with only encoder using PID
     }
+    public void PIDShortDriveEncoder(){
+    	//double enc = (HardwareAdapter.getRightDriveEnc() + HardwareAdapter.getLeftDriveEnc())/2;
+    	double rightSpeed = HardwareAdapter.ShortRightDriveEncoderPID.calculate(HardwareAdapter.getRightDriveEnc());
+    	double leftSpeed = HardwareAdapter.ShortLeftDriveEncoderPID.calculate(HardwareAdapter.getLeftDriveEnc());
+    	double gyroOutput = HardwareAdapter.GyroPID.calculate(HardwareAdapter.kSpartanGyro.getAngle());
+    	rightSpeed *= 0.5;
+    	leftSpeed *= 0.5;
+    	HardwareAdapter.kLeftMotorOne.set(-leftSpeed);
+    	HardwareAdapter.kLeftMotorTwo.set(leftSpeed);
+    	HardwareAdapter.kRightMotorOne.set(-rightSpeed);
+    	HardwareAdapter.kRightMotorTwo.set(rightSpeed);
+    	//Driving with only encoder using PID
+    }
     //For turning left w/ the right encoder
-public void PIDDriveEncoderRight(){
+    public void PIDDriveEncoderRight(){
     	//double enc = (HardwareAdapter.getRightDriveEnc() + HardwareAdapter.getLeftDriveEnc())/2;
     	double rightSpeed = HardwareAdapter.RightDriveEncoderPID.calculate(HardwareAdapter.getRightDriveEnc());
     	double leftSpeed = rightSpeed;

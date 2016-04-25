@@ -1,8 +1,12 @@
 package org.usfirst.frc.team1339.auto.commandgroup;
 
+import org.usfirst.frc.team1339.auto.commands.DefenseChill;
+import org.usfirst.frc.team1339.auto.commands.DrivePIDArm;
 import org.usfirst.frc.team1339.auto.commands.OpenPortcullis;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveForwardEncoder;
+import org.usfirst.frc.team1339.auto.commands.PIDShortDrive;
 import org.usfirst.frc.team1339.commands.CommandBase;
+import org.usfirst.frc.team1339.lib.utils.EncoderConversion;
 import org.usfirst.frc.team1339.robot.HardwareAdapter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -29,8 +33,9 @@ public class AutomatedPortcullis extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new PIDDriveForwardEncoder(3, CommandBase.EncConv.getClicksInches(HardwareAdapter.getUltraAverage() - 5)) );
-    	addSequential(new OpenPortcullis(0));
-    	addSequential(new PIDDriveForwardEncoder(2, 1000));
+    	addSequential(new PIDShortDrive());
+    	addParallel(new DrivePIDArm(-5000, 2));
+    	addSequential(new DefenseChill(-4000));
+    	addSequential(new PIDDriveForwardEncoder(2, -1000));
     }
 }
