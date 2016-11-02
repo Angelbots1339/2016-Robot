@@ -19,7 +19,8 @@ public class Ingest extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("static-access")
+	protected void execute() {
     	PIDIntake.intake(-.8);
     	if(HardwareAdapter.kIntakeUltrasonic.getRangeInches() > 5){
     		counter = 0;

@@ -25,7 +25,8 @@ public class PIDDriveArm extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	HardwareAdapter.ArmPID.setSetpoint(m_setpoint);
     }
 

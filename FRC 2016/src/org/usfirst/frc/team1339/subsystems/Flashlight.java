@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1339.subsystems;
 
-import org.usfirst.frc.team1339.commands.ControlFlashlight;
 import org.usfirst.frc.team1339.robot.HardwareAdapter;
 
 import edu.wpi.first.wpilibj.Relay;

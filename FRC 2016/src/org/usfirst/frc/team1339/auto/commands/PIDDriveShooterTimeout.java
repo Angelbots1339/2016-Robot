@@ -22,7 +22,8 @@ public class PIDDriveShooterTimeout extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	HardwareAdapter.ShooterPID.setSetpoint(RPSsetpoint);
     }
 

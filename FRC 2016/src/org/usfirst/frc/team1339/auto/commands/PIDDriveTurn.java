@@ -24,7 +24,8 @@ public class PIDDriveTurn extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	HardwareAdapter.GyroPID.setPID(Constants.kGyroKp, Constants.kGyroKi, Constants.kGyroKd);
     	if(m_angle > 0){
     		HardwareAdapter.LeftDriveEncoderPID.setSetpoint(m_clicks+HardwareAdapter.getLeftDriveEnc());
@@ -48,7 +49,8 @@ public class PIDDriveTurn extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @SuppressWarnings("static-access")
+	protected boolean isFinished() {
     	if(m_angle > 0){
     		return HardwareAdapter.LeftDriveEncoderPID.onTarget(10) 
     				|| isTimedOut();

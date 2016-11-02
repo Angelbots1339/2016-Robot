@@ -15,7 +15,8 @@ public class ResetSensors extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("static-access")
+	protected void execute() {
     	HardwareAdapter.resetDriveEncoder();
     	HardwareAdapter.resetGyro();
     	HardwareAdapter.kShooterMotorOne.setEncPosition(0);

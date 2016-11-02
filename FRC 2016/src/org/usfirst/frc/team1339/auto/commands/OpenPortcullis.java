@@ -2,8 +2,6 @@ package org.usfirst.frc.team1339.auto.commands;
 
 import org.usfirst.frc.team1339.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
@@ -19,7 +17,8 @@ public class OpenPortcullis extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	HardwareAdapter.ArmPID.setSetpoint(setpoint);
     }
 

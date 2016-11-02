@@ -1,14 +1,9 @@
 package org.usfirst.frc.team1339.vision;
 
-import org.usfirst.frc.team1339.auto.commands.PIDGyro;
 import org.usfirst.frc.team1339.commands.CommandBase;
 import org.usfirst.frc.team1339.lib.utils.VisionVariables;
-import org.usfirst.frc.team1339.robot.Constants;
-import org.usfirst.frc.team1339.robot.HardwareAdapter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
@@ -34,7 +29,8 @@ public class RunVision extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
 
     	//System.out.println("CenterX " + Double.toString(VisionVariables.kPIDX[0]) + " " + Double.toString(System.currentTimeMillis() - startTime));
     	PIDChassis.runGetGrip();
@@ -69,12 +65,14 @@ public class RunVision extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @SuppressWarnings("static-access")
+	protected boolean isFinished() {
         return (isTimedOut() || HardwareAdapter.TurnGyroPID.onTarget(.30) || done);
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    @SuppressWarnings("static-access")
+	protected void end() {
     	HardwareAdapter.kLeftMotorOne.set(0);
     	HardwareAdapter.kLeftMotorTwo.set(0);
     	HardwareAdapter.kRightMotorOne.set(0);
@@ -85,7 +83,8 @@ public class RunVision extends CommandBase {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    @SuppressWarnings("static-access")
+	protected void interrupted() {
     	HardwareAdapter.kLeftMotorOne.set(0);
     	HardwareAdapter.kLeftMotorTwo.set(0);
     	HardwareAdapter.kRightMotorOne.set(0);

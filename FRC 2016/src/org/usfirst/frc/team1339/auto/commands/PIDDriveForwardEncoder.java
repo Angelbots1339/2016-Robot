@@ -25,7 +25,8 @@ public class PIDDriveForwardEncoder extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	HardwareAdapter.GyroPID.setPID(Constants.kAutoGyroKp, Constants.kAutoGyroKi, Constants.kAutoGyroKd);
     	HardwareAdapter.RightDriveEncoderPID.setSetpoint(m_clicks+HardwareAdapter.getRightDriveEnc());
     	HardwareAdapter.LeftDriveEncoderPID.setSetpoint(m_clicks+HardwareAdapter.getLeftDriveEnc());
@@ -34,7 +35,8 @@ public class PIDDriveForwardEncoder extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("static-access")
+	protected void execute() {
     	SmartDashboard.putString("AutoCommand", "Enc");
     	PIDChassis.PIDDriveEncoder();
     	if (HardwareAdapter.RightDriveEncoderPID.onTarget(50) || HardwareAdapter.LeftDriveEncoderPID.onTarget(50)){

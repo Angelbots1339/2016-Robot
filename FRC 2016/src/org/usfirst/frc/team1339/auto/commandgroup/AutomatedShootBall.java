@@ -24,7 +24,8 @@ public class AutomatedShootBall extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("static-access")
+	protected void execute() {
     	//if (!PIDChassis.visionRunning){
     	SmartDashboard.putString("IntakeCommand", "Intake");
     	if (HardwareAdapter.ShooterPID.onTarget(1.5)){

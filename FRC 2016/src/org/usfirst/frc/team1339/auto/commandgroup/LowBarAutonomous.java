@@ -2,8 +2,6 @@ package org.usfirst.frc.team1339.auto.commandgroup;
 
 import org.usfirst.frc.team1339.auto.commands.ArmDown;
 import org.usfirst.frc.team1339.auto.commands.DriveForward;
-import org.usfirst.frc.team1339.auto.commands.PIDGyro;
-import org.usfirst.frc.team1339.auto.commands.PIDShootBallEncoder;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

@@ -1,18 +1,27 @@
 package org.usfirst.frc.team1339.robot;
 
-import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-
-import org.usfirst.frc.team1339.auto.commandgroup.*;
-import org.usfirst.frc.team1339.auto.commands.OpenCheval;
+import org.usfirst.frc.team1339.auto.commandgroup.AutomatedCheval;
+import org.usfirst.frc.team1339.auto.commandgroup.AutomatedShootBall;
+import org.usfirst.frc.team1339.auto.commandgroup.CorrectVision;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveForwardEncoder;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveShooter;
-import org.usfirst.frc.team1339.auto.commands.PIDShortDrive;
-import org.usfirst.frc.team1339.auto.commands.IngestBallPID;
-import org.usfirst.frc.team1339.commands.*;
+import org.usfirst.frc.team1339.commands.FlywheelBackwards;
 import org.usfirst.frc.team1339.lib.utils.SynchronousPID;
+
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 public class HardwareAdapter {
 	//Motors

@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1339.auto.commandgroup;
 
-import org.usfirst.frc.team1339.auto.commands.Chill;
-import org.usfirst.frc.team1339.auto.commands.IngestBallPID;
 import org.usfirst.frc.team1339.commands.DriveIntake;
 import org.usfirst.frc.team1339.commands.DriveIntakeTimeout;
 import org.usfirst.frc.team1339.commands.Ingest;

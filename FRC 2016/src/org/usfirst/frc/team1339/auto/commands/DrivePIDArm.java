@@ -2,8 +2,6 @@ package org.usfirst.frc.team1339.auto.commands;
 
 import org.usfirst.frc.team1339.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
@@ -21,12 +19,14 @@ public class DrivePIDArm extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	HardwareAdapter.ArmPID.setSetpoint(setpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("static-access")
+	protected void execute() {
     	if(PIDArm.down){
     		PIDArm.PIDDriveArm();
     	}

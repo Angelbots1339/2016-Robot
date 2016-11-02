@@ -10,7 +10,8 @@ public class PIDGyro extends CommandBase {
 	double m_speed;
 	
 	
-    public PIDGyro(double speed , double angle) {
+    @SuppressWarnings("static-access")
+	public PIDGyro(double speed , double angle) {
         // Use requires() here to declare subsystem dependencies
     	requires(PIDChassis);
     	m_angle = HardwareAdapter.kSpartanGyro.getAngle() + angle;
@@ -20,7 +21,8 @@ public class PIDGyro extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	HardwareAdapter.TurnGyroPID.setSetpoint(m_angle);
     }
 
@@ -30,7 +32,8 @@ public class PIDGyro extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @SuppressWarnings("static-access")
+	protected boolean isFinished() {
         return (HardwareAdapter.TurnGyroPID.onTarget(1) || isTimedOut());
     }
 

@@ -1,10 +1,13 @@
 package org.usfirst.frc.team1339.commands;
 
-import org.usfirst.frc.team1339.lib.utils.EncoderConversion;
 import org.usfirst.frc.team1339.robot.HardwareAdapter;
+import org.usfirst.frc.team1339.subsystems.Flashlight;
+import org.usfirst.frc.team1339.subsystems.PIDArm;
+import org.usfirst.frc.team1339.subsystems.PIDChassis;
+import org.usfirst.frc.team1339.subsystems.PIDIntake;
+import org.usfirst.frc.team1339.subsystems.PIDShooter;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team1339.subsystems.*;
 /**
  *
  */

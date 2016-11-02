@@ -2,8 +2,6 @@ package org.usfirst.frc.team1339.auto.commands;
 
 import org.usfirst.frc.team1339.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
@@ -22,7 +20,8 @@ public class DefenseChill extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("static-access")
+	protected void execute() {
     	if(HardwareAdapter.kLeverMotor.get() >= m_setpoint){
     		done = true;
     	}

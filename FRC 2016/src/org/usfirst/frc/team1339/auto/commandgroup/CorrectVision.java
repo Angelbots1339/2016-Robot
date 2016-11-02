@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1339.auto.commandgroup;
 
-import org.usfirst.frc.team1339.auto.commands.Chill;
 import org.usfirst.frc.team1339.vision.RunVision;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

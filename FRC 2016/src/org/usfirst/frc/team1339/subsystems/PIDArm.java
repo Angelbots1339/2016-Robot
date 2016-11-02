@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1339.subsystems;
 
-import org.usfirst.frc.team1339.commands.CommandBase;
-import org.usfirst.frc.team1339.commands.DriveArm;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveArm;
 import org.usfirst.frc.team1339.robot.HardwareAdapter;
 

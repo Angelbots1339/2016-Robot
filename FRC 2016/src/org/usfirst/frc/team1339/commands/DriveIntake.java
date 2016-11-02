@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1339.commands;
 
-import org.usfirst.frc.team1339.robot.Constants;
-
 import edu.wpi.first.wpilibj.Joystick;
 
 /**

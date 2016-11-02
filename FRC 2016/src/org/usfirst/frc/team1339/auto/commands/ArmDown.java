@@ -2,8 +2,6 @@ package org.usfirst.frc.team1339.auto.commands;
 
 import org.usfirst.frc.team1339.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
@@ -26,7 +24,8 @@ public class ArmDown extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @SuppressWarnings("static-access")
+	protected boolean isFinished() {
         return isTimedOut() || !HardwareAdapter.kLeftHallEffect.get() || !HardwareAdapter.kRightHallEffect.get();
     }
 

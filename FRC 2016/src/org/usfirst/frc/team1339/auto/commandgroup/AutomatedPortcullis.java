@@ -2,12 +2,8 @@ package org.usfirst.frc.team1339.auto.commandgroup;
 
 import org.usfirst.frc.team1339.auto.commands.DefenseChill;
 import org.usfirst.frc.team1339.auto.commands.DrivePIDArm;
-import org.usfirst.frc.team1339.auto.commands.OpenPortcullis;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveForwardEncoder;
 import org.usfirst.frc.team1339.auto.commands.PIDShortDrive;
-import org.usfirst.frc.team1339.commands.CommandBase;
-import org.usfirst.frc.team1339.lib.utils.EncoderConversion;
-import org.usfirst.frc.team1339.robot.HardwareAdapter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

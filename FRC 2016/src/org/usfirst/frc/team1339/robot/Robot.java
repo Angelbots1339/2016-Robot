@@ -1,18 +1,11 @@
 
 package org.usfirst.frc.team1339.robot;
 
-import org.usfirst.frc.team1339.auto.commandgroup.IngestGroup;
-import org.usfirst.frc.team1339.auto.commandgroup.LowBarAutonomous;
 import org.usfirst.frc.team1339.auto.commandgroup.OneBallAuto;
-import org.usfirst.frc.team1339.auto.commandgroup.RockWallAutonomous;
-import org.usfirst.frc.team1339.auto.commandgroup.SpyBoxAutonomous;
 import org.usfirst.frc.team1339.auto.commands.PIDDriveForwardEncoder;
-import org.usfirst.frc.team1339.commands.*;
-import org.usfirst.frc.team1339.lib.utils.EncoderConversion;
-import org.usfirst.frc.team1339.subsystems.PIDArm;
+import org.usfirst.frc.team1339.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;

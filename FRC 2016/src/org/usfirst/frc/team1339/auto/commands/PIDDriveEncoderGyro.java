@@ -24,7 +24,8 @@ public class PIDDriveEncoderGyro extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	HardwareAdapter.resetGyro();
     	HardwareAdapter.resetDriveEncoder();
     	HardwareAdapter.TurnGyroPID.setSetpoint(m_angle);
@@ -39,7 +40,8 @@ public class PIDDriveEncoderGyro extends CommandBase {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @SuppressWarnings("static-access")
+	protected boolean isFinished() {
         return HardwareAdapter.RightDriveEncoderPID.onTarget(10)
         		|| HardwareAdapter.LeftDriveEncoderPID.onTarget(10) 
         		|| HardwareAdapter.TurnGyroPID.onTarget(.5)

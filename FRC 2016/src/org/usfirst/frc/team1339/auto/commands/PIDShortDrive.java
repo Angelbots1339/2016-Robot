@@ -13,6 +13,7 @@ public class PIDShortDrive extends CommandBase {
 	double m_clicksLeft = 0;
 	double m_clicksRight = 0;
 	private int counter;
+	@SuppressWarnings("unused")
 	private boolean done;
 	
     public PIDShortDrive() {
@@ -25,7 +26,8 @@ public class PIDShortDrive extends CommandBase {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @SuppressWarnings("static-access")
+	protected void initialize() {
     	PIDArm.chillInit();
     	m_clicksLeft = HardwareAdapter.getDriveClicksUltra1();
     	m_clicksLeft += 900;
@@ -42,7 +44,8 @@ public class PIDShortDrive extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("static-access")
+	protected void execute() {
     	SmartDashboard.putString("AutoCommand", "Enc");
     	PIDChassis.PIDShortDriveEncoder();
     	if (HardwareAdapter.ShortRightDriveEncoderPID.onTarget(50) || HardwareAdapter.ShortLeftDriveEncoderPID.onTarget(50)){

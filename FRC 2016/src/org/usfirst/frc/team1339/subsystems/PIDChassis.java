@@ -1,15 +1,11 @@
 package org.usfirst.frc.team1339.subsystems;
 
+import org.usfirst.frc.team1339.commands.DriveWithArcadeJoystick;
+import org.usfirst.frc.team1339.lib.utils.AngelMath;
+import org.usfirst.frc.team1339.lib.utils.VisionVariables;
 import org.usfirst.frc.team1339.robot.Constants;
 import org.usfirst.frc.team1339.robot.HardwareAdapter;
 
-import java.security.acl.LastOwnerException;
-
-import org.usfirst.frc.team1339.commands.*;
-import org.usfirst.frc.team1339.lib.utils.AngelMath;
-import org.usfirst.frc.team1339.lib.utils.VisionVariables;
-
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -142,7 +138,8 @@ public class PIDChassis extends Subsystem {
     	//double enc = (HardwareAdapter.getRightDriveEnc() + HardwareAdapter.getLeftDriveEnc())/2;
     	double rightSpeed = HardwareAdapter.ShortRightDriveEncoderPID.calculate(HardwareAdapter.getRightDriveEnc());
     	double leftSpeed = HardwareAdapter.ShortLeftDriveEncoderPID.calculate(HardwareAdapter.getLeftDriveEnc());
-    	double gyroOutput = HardwareAdapter.GyroPID.calculate(HardwareAdapter.kSpartanGyro.getAngle());
+    	@SuppressWarnings("unused")
+		double gyroOutput = HardwareAdapter.GyroPID.calculate(HardwareAdapter.kSpartanGyro.getAngle());
     	rightSpeed *= 0.5;
     	leftSpeed *= 0.5;
     	HardwareAdapter.kLeftMotorOne.set(-leftSpeed);
@@ -188,7 +185,8 @@ public class PIDChassis extends Subsystem {
     	//Driving with only encoder using PID
     }
     public void PIDDriveEncoderGyro(double speed){
-    	double input = (HardwareAdapter.getLeftDriveEnc()+ 
+    	@SuppressWarnings("unused")
+		double input = (HardwareAdapter.getLeftDriveEnc()+ 
     		HardwareAdapter.getRightDriveEnc())/2;
     	//HardwareAdapter.DriveEncoderPID.setSetpoint(Constants.kDriverSetpoint);
     	HardwareAdapter.GyroPID.setSetpoint(0);
